@@ -24,7 +24,9 @@ public class TyreHttpRepository : ITyreHttpRepository
         if (filter == null)
             filter = new TyreFilter();
 
+        await Console.Out.WriteLineAsync("Opony endpoint - przed");
         var response = await _client.PostAsJsonAsync($"v1/tyres/page/{pageNumber}",filter);
+        await Console.Out.WriteLineAsync("Opony endpoint - po");
         var responseBody =  await response.Content.ReadAsStringAsync();
         var vm = JsonConvert.DeserializeObject<TyresViewModel>(responseBody);
 

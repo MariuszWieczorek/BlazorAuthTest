@@ -29,6 +29,7 @@ public class HttpInterceptorService
 
     public async Task RegisterEvent()
     {
+        await Console.Out.WriteLineAsync("Interceptor - RegisterEvent()");
         _interceptor.AfterSendAsync += HandleResponse;
          await Task.Delay(100);
     }
@@ -37,12 +38,14 @@ public class HttpInterceptorService
     // i dodać wywołanie InterceptorBeforeSendAsync()
     public async Task  RegisterBeforeSendEvent()
     {
+        await Console.Out.WriteLineAsync("Interceptor - RegisterBeforeSend()");
         _interceptor.BeforeSendAsync += InterceptBeforeSendAsync;
         await Task.Delay(100);
     }
 
     public void DisposeEvent()
     {
+        Console.Out.WriteLine("Interceptor - DisposeEvent()");
         _interceptor.AfterSendAsync -= HandleResponse;
         _interceptor.BeforeSendAsync -= InterceptBeforeSendAsync;
     }
@@ -52,6 +55,7 @@ public class HttpInterceptorService
     {
         // Sprawdzamy ścieżkę, która została wywołana
 
+        Console.Out.WriteLine("Interceptor - Wywołanie InterceptBeforeSendAsync()");
 
         var absolutePath = e.Request.RequestUri.AbsolutePath;
 
@@ -75,9 +79,12 @@ public class HttpInterceptorService
     {
         var message = string.Empty;
 
+        Console.Out.WriteLine("Interceptor - Wywołanie HandleResponse()");
+
         if (e.Response == null)
         {
-                _navigationManager.NavigateTo("/customerror");
+            Console.Out.WriteLine("Interceptor HandleResponse błąd - e.Response == null");
+            _navigationManager.NavigateTo("/customerror");
             message = "Interceptor - Responce == NULL.";
             throw new HttpResponseException(message);
         }
@@ -103,10 +110,6 @@ public class HttpInterceptorService
             }
 
             throw new HttpResponseException(message);
-        }
-        else
-        {
-            int i = 1;
         }
 
     }

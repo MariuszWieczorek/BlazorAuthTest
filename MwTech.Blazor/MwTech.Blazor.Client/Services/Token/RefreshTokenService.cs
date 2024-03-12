@@ -23,6 +23,8 @@ public class RefreshTokenService
     // Jeżeli do wygaśnięcia jest mniej niż dwie minuty, to próbujemy go odświeżyć
     public async Task<string> TryRefreshToken()
     {
+        
+
         try
         {
             var authState = await _authenticationStateProvider.GetAuthenticationStateAsync();
@@ -42,9 +44,13 @@ public class RefreshTokenService
             var diff = expTime - now;
 
             // Jeżeli do wygaśnięcia jest mniej niż dwie minuty, to próbujemy go odświeżyć
-            if (diff.TotalMinutes <= 2)
-                return await _authenticationHttpRepository.RefreshToken();
+            await Console.Out.WriteLineAsync($"TryRefreshToken() - do wygaśnięcia zostało {diff.TotalMinutes} minut");
 
+            if (diff.TotalMinutes <= 2)
+            {
+                await Console.Out.WriteLineAsync("TryRefreshToken() - Odświeżamy Token");
+                return await _authenticationHttpRepository.RefreshToken();
+            }
             return string.Empty;
         }
         catch (Exception)

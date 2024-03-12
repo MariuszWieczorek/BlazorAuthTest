@@ -40,18 +40,19 @@ public class AuthenticationHttpRepository : IAuthenticationHttpRepository
     // jeżeli Refreshtoken jeszcze nie wygasł, to chcemy odświeżyć token dostępu.
     public async Task<string> RefreshToken()
     {
-        
+        await Console.Out.WriteLineAsync("RefreshToken()");
         var token = await _localStorage.GetItemAsync<string>("authToken");
         var refreshToken = await _localStorage.GetItemAsync<string>("refreshToken");
 
         // wywołujemy endpointa, który odświeża tokena
+         await Console.Out.WriteLineAsync("RefreshToken() - endpoint przed");
         var response = await _client.PostAsJsonAsync("v1/token/refresh",
             new RefreshTokenCommand
             {
                 Token = token,
                 RefreshToken = refreshToken
             });
-
+        await Console.Out.WriteLineAsync("RefreshToken() - endpoint po");
         // odczytujemy zawartość, która została zwrócona
         var content = await response.Content.ReadAsStringAsync();
 
