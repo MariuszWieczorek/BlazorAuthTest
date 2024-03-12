@@ -2,8 +2,8 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.WebUtilities;
-using MwTech.Blazor.Client.AuthStateProviders;
 using MwTech.Blazor.Client.HttpRepository.Interfaces;
+using MwTech.Blazor.Client.Services.AuthStateProviders;
 using MwTech.Shared.Authentication.Commands;
 using MwTech.Shared.Authentication.Dtos;
 using MwTech.Shared.Common.Models;
@@ -52,7 +52,7 @@ public class AuthenticationHttpRepository : IAuthenticationHttpRepository
                 RefreshToken = refreshToken
             });
 
-        // odczytujemy zawartość, któa zostałą zwrócona
+        // odczytujemy zawartość, która została zwrócona
         var content = await response.Content.ReadAsStringAsync();
 
         // deserializujemy na LoginUserDto
@@ -70,6 +70,7 @@ public class AuthenticationHttpRepository : IAuthenticationHttpRepository
             ("bearer", result.Token);
 
         // zwracamy odświeżony token.
+        await Console.Out.WriteLineAsync("odświeżony token \n" + result.Token);
         return result.Token;
     }
 

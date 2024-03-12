@@ -4,7 +4,7 @@ using MwTech.Blazor.Client.Services.Token;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 
-namespace MwTech.Blazor.Client.AuthStateProviders;
+namespace MwTech.Blazor.Client.Services.AuthStateProviders;
 
 public class AuthStateProvider : AuthenticationStateProvider
 {
@@ -41,8 +41,8 @@ public class AuthStateProvider : AuthenticationStateProvider
 
         //return await Task.FromResult(FakeAuthState());
 
-        var authState = new 
-            AuthenticationState(new 
+        var authState = new
+            AuthenticationState(new
                 ClaimsPrincipal(new ClaimsIdentity(JwtParser.ParseClaimsFromJwt(token), "jwtAuthType")
                 ));
         return authState;

@@ -1,13 +1,13 @@
 ﻿using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Toolbelt.Blazor.Extensions.DependencyInjection;
-using MwTech.Blazor.Client.AuthStateProviders;
 using MwTech.Blazor.Client.HttpRepository;
 using MwTech.Blazor.Client.HttpRepository.Interfaces;
 using MwTech.Blazor.Services;
 using Radzen;
 using MwTech.Blazor.Client.Services.HttpInterceptor;
 using MwTech.Blazor.Client.Services.Token;
+using MwTech.Blazor.Client.Services.AuthStateProviders;
 
 namespace MwTech.Blazor.Client;
 
