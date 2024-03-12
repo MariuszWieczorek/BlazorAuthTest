@@ -8,16 +8,17 @@
                     <strong>@context.User.FindFirst(ClaimTypes.GivenName)?.Value @context.User.FindFirst(ClaimTypes.Surname)?.Value</strong>
                 </span>
                 <span class="me-2">
-                    <Button OnClick="@( () => Navigation.NavigateTo("wyloguj"))" >wyloguj</Button>
+                    <button type="button" @onclick="@( () => Navigation.NavigateTo("wyloguj"))" class="btn btn-secondary btn-sm me-2 my-1">Wyloguj</button>
+
                 </span>
         </Authorized>
         <NotAuthorized>
 
                 <span class="me-2">
-                    <Button  OnClick="@( () => Navigation.NavigateTo("rejestracja"))" >rejestracja</Button>
+                    <button type="button" @onclick="@( () => Navigation.NavigateTo("rejestracja"))" class="btn btn-secondary btn-sm me-2 my-1">rejestracja</button>
                 </span>
                 <span class="me-2">
-                    <Button OnClick="@( () => Navigation.NavigateTo("logowanie"))" >zaloguj</Button>
+                    <button type="button" @onclick="@( () => Navigation.NavigateTo("logowanie"))" class="btn btn-secondary btn-sm me-2 my-1">zaloguj</button>
                 </span>
 
         </NotAuthorized>
