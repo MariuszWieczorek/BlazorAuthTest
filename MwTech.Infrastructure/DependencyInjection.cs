@@ -46,7 +46,7 @@ public static class DependencyInjection
         services.AddScoped<IScadaIfsDbContext, ScadaIfsDbContext>();
         services.AddScoped<IQrCodeGenerator, QrCodeGenerator>();
 
-        var mainConnectionString = configuration.GetConnectionString("DefaultConnection");
+        var mainConnectionString = configuration.GetConnectionString("LocalConnection");
         var oracleConnectionString = configuration.GetConnectionString("Oracle");
         var scadaIfsConnectionString = configuration.GetConnectionString("ScadaIfs");
         var comarchConnectionString = configuration.GetConnectionString("Comarch");
