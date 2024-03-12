@@ -1,0 +1,46 @@
+﻿@page "/currency/add"
+@layout MwTechLayout
+<h3>Dodaj Walutę</h3>
+
+<div class="row my-4">
+    <div class="col-6">
+        <EditForm Model="@_currency" OnValidSubmit="Save">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group mt-3">
+                <label class="form-label">Kod</label>
+                <InputText @bind-Value="_currency.CurrencyCode" class="form-control" />
+                <ValidationMessage For="() => _currency.CurrencyCode" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="form-label">Nazwa</label>
+                <InputText @bind-Value="_currency.Name" class="form-control" />
+                <ValidationMessage For="() => _currency.Name" />
+            </div>
+
+            <div class="form-group mt-3">
+
+                @if (_isLoading)
+                {
+                    <button class="btn btn-primary btn-lg btn-spinner" disabled>
+                        <img src="/loading.gif" />
+                        <span>Zapisywanie...</span>
+                    </button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-lg">
+                        Zapisz
+                    </button>
+                }
+
+            </div>
+
+
+        </EditForm>
+
+    </div>
+</div>
+

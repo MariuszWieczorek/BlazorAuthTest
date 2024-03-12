@@ -1,0 +1,50 @@
+﻿@page "/tyres/add"
+@layout TyresLayout
+<h3>Dodaj Oponę</h3>
+
+<div class="row my-4">
+    <div class="col-6">
+        <EditForm Model="@_tyre" OnValidSubmit="Save">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group mt-3">
+                <label class="form-label">Kod</label>
+                <InputText @bind-Value="_tyre.TyreNumber" class="form-control" />
+                <ValidationMessage For="() => _tyre.TyreNumber" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="form-label">Nazwa</label>
+                <InputText @bind-Value="_tyre.Name" class="form-control" />
+                <ValidationMessage For="() => _tyre.Name" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="form-label">Opis</label>
+                <InputTextArea @bind-Value="_tyre.Description" class="form-control" rows="4" />
+            </div>
+
+
+            <div class="form-group mt-3">
+                @if (_isLoading)
+                {
+                    <button class="btn btn-primary btn-lg btn-spinner" disabled>
+                        <img src="/loading.gif" />
+                        <span>Zapisywanie...</span>
+                    </button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-lg">
+                        Zapisz
+                    </button>
+                }
+            </div>
+
+
+        </EditForm>
+
+    </div>
+</div>
+

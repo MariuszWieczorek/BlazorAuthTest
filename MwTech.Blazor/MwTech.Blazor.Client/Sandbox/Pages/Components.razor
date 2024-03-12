@@ -1,0 +1,276 @@
+﻿@page "/components"
+@rendermode InteractiveAuto
+@layout SandboxLayout
+
+
+<h3>Komponenty</h3>
+<hr />
+
+<div class="row">
+    <div class="col-2">
+        <p> 1. komponent bez parametrów </p>
+
+        <Card01></Card01>
+    </div>
+    <div class="col-2">
+        <p> 2. komponent z parametrami - tekst </p>
+
+        <Card02 Image="/files/kowalski.png"
+                BtnText="Więcej"
+                Title="Jan Kowalski"
+                Content="Programista C#/.NET">
+        </Card02>
+    </div>
+    <div class="col-2">
+        <p> 3. komponent z parametrami - Html </p>
+
+        <Card03 Image="/files/kowalski.png"
+                BtnText="Więcej">
+            <Title>
+                <b>Jan Kowalski</b>
+            </Title>
+            <Content>
+                <u>Programista C#/.NET</u> z 20 letnim doświadczeniem.<br />
+                <u>Specjalizacje:</u>
+                <ul>
+                    <li>Blazor</li>
+                    <li>ASP.NET Core</li>
+                </ul>
+            </Content>
+        </Card03>
+    </div>
+    <div class="col-6">
+        <p> 4. komponent z parametrami </p>
+        <div class="d-flex gap-2">
+            @foreach (var item in _authors)
+            {
+                <Card03 Image="@item.Image"
+                        BtnText="@item.BtnText">
+                    <Title>
+                        @item.Title
+                    </Title>
+                    <Content>
+                        @item.Content
+                    </Content>
+                </Card03>
+            }
+        </div>
+    </div>
+
+</div>
+
+<br />
+<h3>Komponenty Kaskadowe</h3>
+<hr />
+
+
+<div class="row">
+
+    <div class="col-3">
+        <p> komponent, 1 parametr kaskadowy</p>
+        <p> przekazany z poziomu wyżej </p>
+
+        <Card11 Image="/files/kowalski.png"
+                BtnText="Więcej"
+                Title="Jan Kowalski"
+                Content="Programista C#/.NET">
+        </Card11>
+
+    </div>
+    <div class="col-3">
+
+        <p> komponent, 1 parametry kaskadowy </p>
+        <p> przekazany z dwóch poziomów wyżej </p>
+
+        <CascadingValue Value="@_info">
+            <Card12 Image="/files/kowalski.png"
+                    BtnText="Więcej"
+                    Title="Jan Kowalski"
+                    Content="Programista C#/.NET">
+            </Card12>
+        </CascadingValue>
+
+    </div>
+    <div class="col-3">
+
+        <p> komponent, 2 paramety kaskadowe  </p>
+        <p> przekazany z dwóch poziomów wyżej </p>
+
+        <CascadingValue Value="@_title" Name="Title">
+            <CascadingValue Value="@_info" Name="Info">
+                <Card13 Image="/files/kowalski.png"
+                        BtnText="Więcej"
+                        Title="Jan Kowalski"
+                        Content="Programista C#/.NET">
+                </Card13>
+            </CascadingValue>
+        </CascadingValue>
+
+    </div>
+
+</div>
+
+
+<br />
+<h3>Atrybuty Html</h3>
+<hr />
+
+
+<div class="row">
+
+    <div class="col-3">
+        <p> atrybuty w komponancie osobno  </p>
+        <p> ustawiane osobno  </p>
+
+        <CascadingValue Value="@_title" Name="Title">
+            <CascadingValue Value="@_info" Name="Info">
+                <Card21 Image="/files/kowalski.png"
+                        BtnText="Więcej"
+                        BtnTitle="Więcej"
+                        BtnClass="btn btn-warning"
+                        BtnDisabled=false
+                        OnClickMore="ClickMore">
+                    <Title>
+                        <b>Jan Kowalski</b>
+                    </Title>
+                    <Content>
+                        <u>Programista C#/.NET</u> z 20 letnim doświadczeniem.<br />
+                        <u>Specjalizacje:</u>
+                        <ul>
+                            <li>Blazor</li>
+                            <li>ASP.NET Core</li>
+                        </ul>
+                    </Content>
+                </Card21>
+            </CascadingValue>
+        </CascadingValue>
+    </div>
+    <div class="col-3">
+        <p> atrybuty w komponancie osobno  </p>
+        <p> ustawiane ze słownika  </p>
+
+        <CascadingValue Value="@_title" Name="Title">
+            <CascadingValue Value="@_info" Name="Info">
+                <Card21 Image="/files/kowalski.png"
+                        BtnText="Więcej"
+                        @attributes="_cardAttributes"
+                        OnClickMore="ClickMore">
+                    <Title>
+                        <b>Jan Kowalski</b>
+                    </Title>
+                    <Content>
+                        <u>Programista C#/.NET</u> z 20 letnim doświadczeniem.<br />
+                        <u>Specjalizacje:</u>
+                        <ul>
+                            <li>Blazor</li>
+                            <li>ASP.NET Core</li>
+                        </ul>
+                    </Content>
+                </Card21>
+            </CascadingValue>
+        </CascadingValue>
+    </div>
+    <div class="col-3">
+        <p> atrybuty w komponancie osobno  </p>
+        <p> ustawiane ze słownika  </p>
+
+        <CascadingValue Value="@_title" Name="Title">
+            <CascadingValue Value="@_info" Name="Info">
+                <Card22 Image="/files/kowalski.png"
+                        BtnText="Więcej"
+                        BtnAttributes="_cardBtnAttributes"
+                        OnClickMore="ClickMore">
+                    <Title>
+                        <b>Jan Kowalski</b>
+                    </Title>
+                    <Content>
+                        <u>Programista C#/.NET</u> z 20 letnim doświadczeniem.<br />
+                        <u>Specjalizacje:</u>
+                        <ul>
+                            <li>Blazor</li>
+                            <li>ASP.NET Core</li>
+                        </ul>
+                    </Content>
+                </Card22>
+            </CascadingValue>
+        </CascadingValue>
+    </div>
+
+</div>
+<hr />
+
+
+
+
+<Modal
+    Show="_showDialog"
+    OnAccept="ModalAccept"
+    OnCancel="ModalCancel">
+    <Title>
+        Potwierdź
+    </Title>
+    <Body>
+        Czy na pewno chcesz usunąć?
+    </Body>
+</Modal>
+
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-danger my-2" @onclick="ShowDialog">
+            Pokaż okno modalne
+        </button>
+
+
+        <br />
+
+        <button class="btn btn-danger my-2" @onclick="ChangeBtnText">
+            Zmień tekst przycisku
+        </button>
+
+        <br />
+
+        <button class="btn btn-secondary my-2" @onclick="AddCardBorder">
+            Dodaj obramowanie
+        </button>
+    </div>
+
+    @* BtnAttributes="_cardBtnAttributes"
+    @attributes = "_cardAttributes"
+    *@
+
+
+
+    <div class="col-6">
+        <CascadingValue Value="@_title" Name="Title">
+            <CascadingValue Value="@_info" Name="Info">
+                <Card @ref="_card"
+                      Image="/files/kowalski.png"
+                      BtnText="@_btnText"
+                      OnClickMore="ClickMore"
+                      BtnAttributes="_cardBtnAttributes">
+                    <Title>
+                        <b>Jan Kowalski</b>
+                    </Title>
+                    <Content>
+                        <u>Programista C#/.NET</u> z 20 letnim doświadczeniem.<br />
+                        <u>Specjalizacje:</u>
+                        <ul>
+                            <li>Blazor</li>
+                            <li>ASP.NET Core</li>
+                        </ul>
+                    </Content>
+                </Card>
+            </CascadingValue>
+        </CascadingValue>
+
+    </div>
+
+</div>
+
+<hr />
+
+
+
+
+
+

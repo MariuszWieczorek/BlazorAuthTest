@@ -1,0 +1,26 @@
+﻿@page "/counter"
+@rendermode InteractiveAuto
+@layout SandboxLayout
+
+
+<PageTitle>Counter</PageTitle>
+
+
+<SectionContent SectionId="SandboxLayout.TopSection">
+    <div class="me-4">
+        licznik : <strong>@currentCount</strong>
+    </div>
+</SectionContent>
+
+
+@*<LoadingProgress>*@
+
+<h1>Counter</h1>
+
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@*</LoadingProgress>*@
+

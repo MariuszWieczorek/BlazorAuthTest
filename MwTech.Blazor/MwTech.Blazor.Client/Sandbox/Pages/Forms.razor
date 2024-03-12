@@ -1,0 +1,72 @@
+﻿@page "/forms"
+@rendermode InteractiveAuto
+@layout SandboxLayout
+
+<h3>Formularz</h3>
+
+<div class="row my-4">
+    <h4>Nowy pracownik</h4>
+    <div class="col-6">
+        <EditForm Model="_employee" OnValidSubmit="Save">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="form-group mt-3">
+                <label class="form-label">Nazwa</label>
+                <InputText @bind-Value="_employee.Name" class="form-control" />
+                <ValidationMessage For="() => _employee.Name" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="form-label">Notatki</label>
+                <InputTextArea @bind-Value="_employee.Notes" class="form-control" rows="4" />
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="form-label">Wynagrodzenie</label>
+                <InputNumber @bind-Value="_employee.Salary" class="form-control" />
+            </div>
+
+            <div class="form-check mt-3">
+                <InputCheckbox @bind-Value="_employee.IsNew" class="form-check-input" />
+                <label class="form-check-label">Czy nowy pracownik?</label>
+                
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="form-label">Stanowisko</label>
+                <InputSelect @bind-Value="_employee.PositionId" class="form-select">
+                    <option value="0" disabled="disabled" selected>-- Wybierz stanowisko --</option>
+                    @foreach (var item in _positions)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </InputSelect>
+            </div>
+
+            <div class="form-group mt-3">
+                <label class="form-label">Data zatrudnienia</label>
+                <InputDate @bind-Value="_employee.DateOfEmployment" class="form-control" />
+            </div>
+
+            <div class="form-group mt-3">
+
+                @if(_isLoading)
+                {
+                    <button class="btn btn-primary btn-lg btn-spinner" disabled>
+                        <img src="/loading.gif" />
+                        <span>Zapisywanie...</span>
+                    </button>
+                }
+                else
+                {
+                    <button class="btn btn-primary btn-lg">
+                        Zapisz
+                    </button>
+                }
+    
+            </div>
+
+        </EditForm>
+    </div>
+</div>

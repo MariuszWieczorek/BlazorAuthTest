@@ -1,0 +1,31 @@
+﻿@inject NavigationManager Navigation
+@using System.Security.Claims
+
+<div class="me-4">
+    <AuthorizeView>
+        <Authorized>
+                <span class="me-2">
+                    <strong>@context.User.FindFirst(ClaimTypes.GivenName)?.Value @context.User.FindFirst(ClaimTypes.Surname)?.Value</strong>
+                </span>
+                <span class="me-2">
+                    <Button OnClick="@( () => Navigation.NavigateTo("wyloguj"))" >wyloguj</Button>
+                </span>
+        </Authorized>
+        <NotAuthorized>
+
+                <span class="me-2">
+                    <Button  OnClick="@( () => Navigation.NavigateTo("rejestracja"))" >rejestracja</Button>
+                </span>
+                <span class="me-2">
+                    <Button OnClick="@( () => Navigation.NavigateTo("logowanie"))" >zaloguj</Button>
+                </span>
+
+        </NotAuthorized>
+    </AuthorizeView>
+
+    <AuthorizeView Roles="Administrator">
+        <Authorized>
+            <span class="me-2" style="color:crimson;font-weight:bold;">ADMIN</span>
+        </Authorized>
+    </AuthorizeView>
+</div>

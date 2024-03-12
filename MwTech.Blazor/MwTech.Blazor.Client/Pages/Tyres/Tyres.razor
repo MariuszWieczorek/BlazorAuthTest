@@ -1,0 +1,131 @@
+﻿@page "/tyres"
+@layout TyresLayout
+@rendermode _renderMode
+
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@using MwTech.Blazor.Client.Layout
+@using MwTech.Domain.Entities
+@using MwTech.Domain.Entities.Tyres
+@using MwTech.Shared.Tyres.Tyres.Dtos
+
+
+<PageTitle>Opony -  MwTech</PageTitle>
+
+<h1>Opony</h1>
+
+
+@*
+<SectionContent SectionId="TyresLayout.TopSection">
+
+    <LoginInfo></LoginInfo>
+
+</SectionContent>
+
+*@
+<div class="p-3 mb-2 bg-light border rounded">
+    
+        <EditForm Model="_filter" OnValidSubmit="Filter">
+            <div class="row">
+                <div class="col-4 form-group mt-3">
+                    <label class="form-label">Nazwa</label>
+                    <InputText @bind-Value="_filter.TyreName" class="form-control" />
+                </div>
+
+            <div class="col-1">
+                <button class="btn btn-primary btn-lg">
+                    Filtruj
+                </button>
+            </div>
+           
+            </div>
+        </EditForm>
+    
+</div>
+
+
+@if (_tyresDto == null)
+{
+    <Loading></Loading>
+}
+else
+{
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Kod</th>
+                <th>Nazwa. (C)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in _tyresDto)
+            {
+                <tr>
+                    <td>
+                        <a href="/currency/edit/@item.Id" class="fw-bold link-primary link">@item.TyreCode</a>
+                    </td>
+                    <td>@item.TyreName</td>
+                    <td>
+                        <a href="/currency/edit/@item.Id" class="btn btn-warning btn-sm me-2 my-1">Edytuj</a>
+                        <button type="button" @onclick="() => DeleteTyre(item.Id)" class="btn btn-danger btn-sm me-2 my-1">Usuń</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <Pagination PaginationInfo="_paginationInfo" SelectedPage="OnSelectedPage"></Pagination>
+    
+    @*
+    <div class="mb-4">
+        <RadzenDataGrid AllowFiltering="true" Data="@_currencies" TItem="Currency" AllowColumnResize="true" AllowSorting="true">
+            <Columns>
+                <RadzenDataGridColumn TItem="Currency" Property="Name" Title="Nazwa" />
+                <RadzenDataGridColumn TItem="Currency" Property="CurrencyCode" Title="Kod" />
+            </Columns>
+        </RadzenDataGrid>
+    </div>
+    *@
+    @*
+    <TelerikGrid Data="@_tyresDto"
+                 Pageable="true" PageSize="30" Page="1"
+                 Sortable="true"
+                 EnableLoaderContainer="true"
+                 FilterMode="@GridFilterMode.FilterRow">
+
+        <GridToolBarTemplate>
+            <GridCommandButton Command="ExcelExport" Icon="@SvgIcon.FileExcel">Export to Excel</GridCommandButton>
+            <label class="k-checkbox-label"><TelerikCheckBox @bind-Value="@ExportAllPages" />Export All Pages</label>
+        </GridToolBarTemplate>
+
+        <GridExport>
+            <GridExcelExport FileName="telerik-grid-export" AllPages="@ExportAllPages" />
+        </GridExport>
+
+        <GridColumns>
+            <GridColumn Field="@nameof(TyreDto.Id)" Title="Id" Width="5%"/>
+            <GridColumn Field="@nameof(TyreDto.TyreCode)" Title="Indeks" Width="30%"/>
+            <GridColumn Field="@nameof(TyreDto.TyreName)" Title="Nazwa" Width="50%"/>
+            
+
+
+        <GridColumn  Width="15%">
+            <Template>
+                @{ 
+                    TyreDto item = context as TyreDto;
+                       <TelerikButton OnClick="@(_ => DeleteTyre(item.Id) )" ThemeColor="@ThemeConstants.Button.ThemeColor.Error" >usuń</TelerikButton>
+                       <a href="/tyres/edit/@item.Id" class="btn btn-warning btn-sm me-2 my-1">Edit</a>
+                  //   <button type="button" @onclick="() => DeleteCurrency(currItem.Id)" class="btn btn-danger btn-sm me-2 my-1">Usuń</button>
+                }
+            </Template>
+        </GridColumn>
+
+        </GridColumns>
+    </TelerikGrid>
+    *@
+}
+
+

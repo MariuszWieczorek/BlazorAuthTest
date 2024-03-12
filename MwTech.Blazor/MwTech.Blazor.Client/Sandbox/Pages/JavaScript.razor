@@ -1,0 +1,60 @@
+﻿@page "/javascript"
+@rendermode InteractiveAuto
+@layout SandboxLayout
+
+<h3>Wywołanie funkcji JavaScript w C#</h3>
+
+<button class="btn btn-info btn-lg mt-3" @onclick="DisplayAlert">Wyświetl Alert (JavaScript)</button>
+
+<br />
+
+<button class="btn btn-info btn-lg mt-3" @onclick="DisplayConfirmDialog">Wyświetl Potwierdzenie (JavaScript)</button>
+
+@if (_dialogResult)
+{
+    <p class="text-success mt-2">Potwierdzono!</p>
+}
+else
+{
+    <p class="mt-2">Oczekiwanie na potwierdzenie...</p>
+}
+
+<button class="btn btn-info btn-lg" @onclick="ShowResultJs">Wyświetl wynik dodawania (JavaScript)</button>
+
+<hr />
+<h4>Wywołanie funkcji C# w Java Script</h4>
+
+<button class="btn btn-dark btn-lg mt-3" @onclick="ShowResultCSharp">Wyświetl wynik dodawania (Wywołaj C# w JavaScript)</button>
+
+<br />
+
+<button class="btn btn-dark btn-lg mt-3" @onclick="ShowDate">Wyświetl datę (Wywołaj C# w JavaScript)</button>
+
+@if (!string.IsNullOrWhiteSpace(_currentDate))
+{
+    <p class="text-success mt-2">Data: @_currentDate</p>
+}
+
+<br />
+
+
+<hr />
+<h4>Java Script Module</h4>
+
+<button class="btn btn-info btn-lg mt-3" @onclick="ShowResultJsModule">Wyświetl wynik dodawania (JavaScript Module)</button>
+
+<br />
+
+<hr />
+<h4>Używanie Bibliotek Java Script - ToastR</h4>
+
+<button class="btn btn-success btn-lg mt-3" @onclick="ShowToastrNotification">Wyświetl notyfikację (toastr)</button>
+
+<br />
+
+<hr />
+<h4>Inne</h4>
+
+<button class="btn btn-light btn-lg mt-3" @onclick="ChangeBackgroundColor">Zmień kolor tła (czerwony)</button>
+
+

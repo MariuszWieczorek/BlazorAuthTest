@@ -1,0 +1,24 @@
+﻿<!-- Atrybuty ustawiane osobno -->
+<div style="@Style">
+    <div class="flex-column">
+        <div class="card my-1 @_additionalCardClasses" style="width: 18rem;">
+            <img src="@Image" class="card-img-top" alt="@Title">
+            <div class="card-body">
+                <h5 class="card-title">@Title</h5>
+                <p class="card-text">@Content</p>
+                <button class="@BtnClass"
+                        disabled="@BtnDisabled"
+                        title="@BtnTitle"
+                        @onclick="OnClickMore"> @BtnText
+                 </button>
+            </div>
+
+            <div class="mx-1">
+                <AdditionalInfo2 />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* @attributes="BtnAttributes" *@

@@ -1,0 +1,14 @@
+﻿using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MwTech.Application.Products.RouteVersions.Queries.GetAddRouteVersionViewModel;
+
+public class GetAddRouteVersionViewModelQuery : IRequest<AddRouteVersionViewModel>
+{
+    public int ProductId { get; set; }
+    public string? Tab { get; set; }
+}

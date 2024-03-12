@@ -1,0 +1,28 @@
+﻿@page "/samplepage"
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@layout SandboxLayout
+@rendermode InteractiveAuto
+
+
+<PageTitle>Test Boxes -  MwTech</PageTitle>
+
+<h1>Test Boxes</h1>
+
+<SampleComponent TestBoxModel="_box">   </SampleComponent>
+
+@* <AuthorizeView>
+    <Authorized>
+        Użytkownik jest zalogowany... Nazwa: @context.User.FindFirst(ClaimTypes.Name).Value
+    </Authorized>    
+    <NotAuthorized>
+        Użytkownik nie jest zalogowany!!!
+    </NotAuthorized>
+</AuthorizeView>
+
+<AuthorizeView Roles="Administrator">
+    <Authorized>
+        Użytkownik jest administratorem!
+    </Authorized>
+</AuthorizeView> *@
+

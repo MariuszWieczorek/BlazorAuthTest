@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
+    <link href="lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="MwTech.Blazor.styles.css" />
+    <link href="lib/toastr.js/toastr.min.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="_content/Radzen.Blazor/css/material-base.css">
+    <link rel="stylesheet" href="_content/Telerik.UI.for.Blazor/css/kendo-theme-default/all.css" />
+    <link href="_content/Telerik.UI.for.Blazor/css/kendo-font-icons/font-icons.css" rel="stylesheet" />
+
+    <script src="_content/Telerik.UI.for.Blazor/js/telerik-blazor.js" defer></script>
+    
+
+    <HeadOutlet @rendermode="_renderMode" />
+</head>
+
+<body>
+    <Routes @rendermode="_renderMode" />
+
+    <script src="_framework/blazor.web.js"></script>
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/toastr.js/toastr.min.js"></script>
+    <script src="scripts/toastrWrapper.js"></script>
+    <script src="scripts/jsFunctions.js"></script>
+    <script src="scripts/jsHelper.js"></script>
+    <script src="_content/Radzen.Blazor/Radzen.Blazor.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+namespace MwTech.Infrastructure.Persistence.Extensions;
+
+static class ModelBuilderExtensionsRoles
+{
+    public static void SeedRoles(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<IdentityRole>().HasData(
+            new IdentityRole
+            {
+                Id = "C854A873-3D75-4973-AD7E-A83C95726133",
+                Name = "Administrator",
+                NormalizedName = "ADMINISTRATOR",
+                ConcurrencyStamp = "C778085D-D407-4936-8A19-350C6817AA5D"
+            },
+            new IdentityRole
+            {
+                Id = "EC23C152-A1C5-4D9A-B8D4-FAE62D5F059D",
+                Name = "Technolog",
+                NormalizedName = "TECHNOLOG",
+                ConcurrencyStamp = "A1277894-E24D-490E-A3BA-83F9CF5F838D"
+            },
+            new IdentityRole
+            {
+                Id = "ADE32A3F-6149-475A-8155-CFE5D69ACA42",
+                Name = "Ksiegowy",
+                NormalizedName = "KSIEGOWY",
+                ConcurrencyStamp = "B50B7D83-F6E6-4DE3-8346-7D0E8501EEB5"
+            });
+    }
+}

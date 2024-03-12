@@ -1,0 +1,18 @@
+﻿<!-- Komponent z 1 parametrem kaskadowym , przekazanym poziom wyżej -->
+<div class="card" style="width: 18rem;">
+    <img src="@Image" class="card-img-top" alt="@Title">
+    <div class="card-body">
+        <h5 class="card-title">@Title</h5>
+        <p class="card-text">@Content</p>
+        <button class="btn btn-primary">@BtnText</button>
+    </div>
+
+    <div class="mx-1">
+        <CascadingValue Value="@_info">
+            <AdditionalInfo1 />
+        </CascadingValue>
+    </div>
+
+</div>
+
+
